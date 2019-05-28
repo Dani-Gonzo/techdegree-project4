@@ -83,6 +83,7 @@ button {
 
 #phrase ul li{
   margin-top: 15px;
+  vertical-align: top;
 }
 
 /* Title */
@@ -111,8 +112,6 @@ button {
   width: 15px;
 }
 
-
-
 .show {
   color: #fff;
   background-color: #4ac0d5;
@@ -124,6 +123,10 @@ button {
   border-radius: 5px;
   -webkit-animation-duration: .5s;
   animation-duration: .5s;
+}
+
+.hide span {
+  display: none;
 }
 
 

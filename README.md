@@ -21,4 +21,5 @@ JQuery
 - Added text shadow to title class
 
 ## Other Features
-Keyboard functionality
+- Keyboard functionality
+- User can't cheat by highlighting letters

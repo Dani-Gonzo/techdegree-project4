@@ -17,7 +17,7 @@ class Phrase {
             let phraseElement = this.phrase[i];
             // Create a list element with the appropriate class for the current element
             if (phraseElement != " ") {
-                $("#phrase ul").append(`<li class="hide letter ${phraseElement}">${phraseElement}</li>`);
+                $("#phrase ul").append(`<li class="hide letter ${phraseElement}"><span>${phraseElement}</span></li>`);
             }
             else {
                 $("#phrase ul").append('<li class="space"> </li>');
