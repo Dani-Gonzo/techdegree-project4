@@ -12,7 +12,6 @@ JQuery
 ## Styling Personalization
 "Making the project your own" extra credit
 
-Styling personalization:
 - Changed border on buttons to be 2px and dark blue color
 - Added sea green background color to body tag
 - Changed color and added text shadow to header class
