@@ -24,4 +24,20 @@ class Phrase {
             }
         }
     }
+
+    // Check if passed letter is in phrase
+    checkLetter(letter) {
+        for (let i = 0; i < this.phrase.length; i++) {
+            if (letter == this.phrase[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Displays passed letter on screen after a match is found
+    showMatchedLetter(letter) {
+        $(`.${letter}`).removeClass("hide").addClass("show");
+    }
+
 }

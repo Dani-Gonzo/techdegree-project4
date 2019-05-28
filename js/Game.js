@@ -28,4 +28,73 @@ class Game {
         let chosenPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)];
         return chosenPhrase;
     }
+
+    // Begins game by selecting a random phrase and displaying it to the user
+    startGame() {
+        $("#overlay").hide();
+        this.activePhrase = this.getRandomPhrase()
+        this.activePhrase.addPhraseToDisplay();
+    }
+
+    // Checks for winning move
+    // Return true if won, false if not
+    checkForWin() {
+        if ($(".hide").length == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    // Displays game over message
+    // gameWon - Whether or not the user won the game
+    gameOver(gameWon) {
+        // Display #overlay
+        $("#overlay").show();
+        // Insert win or lose message into h1 #game-over-message depending on gameWon
+        // Replace #overlay "start" class with "win" or "lose" class depending on gameWon
+        if (gameWon == true) {
+           $("#game-over-message").append("Congratulations! You win! Play again?");
+           $("#overlay").removeClass("start").addClass("win");
+        }
+        else {
+            $("#game-over-message").append("Better luck next time! Try again?");
+            $("#overlay").removeClass("start").addClass("lose");
+        }
+    }
+
+    // Increases value of missed property
+    // Removes a life (heart) from the scoreboard
+    // Checks if player has remaining lives and ends game if none remaining
+    removeLife() {
+        this.missed++;
+        // Select heart image based on how many times the player has missed a correct guess
+        let tries = $(`#scoreboard li:nth-child(${this.missed}) img`);
+
+        if (tries.attr("src") == "images/liveHeart.png") {
+            tries.attr("src", "images/lostHeart.png");
+        }
+        
+        if (this.missed == 5) {
+           this.gameOver(false);
+        }
+    }
+
+    // Handles on-screen keyboard button clicks
+    // Takes in HTML button element that was clicked
+    handleInteraction(button) {
+        $(button).attr("disabled", true);
+        if (!this.activePhrase.checkLetter($(button).text())) {
+            $(button).addClass("wrong");
+            this.removeLife();
+        }
+        else {
+            $(button).addClass("chosen");
+            this.activePhrase.showMatchedLetter($(button).text());
+            if (this.checkForWin()) {
+                this.gameOver(true);
+            }
+        }
+    }
 }
