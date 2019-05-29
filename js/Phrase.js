@@ -14,7 +14,7 @@ class Phrase {
         // Use for loop to iterate over chosen string elements because it's not an array
         for (let i = 0; i < this.phrase.length; i++) {
             // Set variable to element at current index of string
-            let phraseElement = this.phrase[i];
+            const phraseElement = this.phrase[i];
             // Create a list element with the appropriate class for the current element
             if (phraseElement != " ") {
                 $("#phrase ul").append(`<li class="hide letter ${phraseElement}"><span>${phraseElement}</span></li>`);

@@ -25,7 +25,7 @@ class Game {
 
     // Selects and returns random phrase from phrases property to be used in game
     getRandomPhrase() {
-        let chosenPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)];
+        const chosenPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)];
         return chosenPhrase;
     }
 
@@ -55,13 +55,19 @@ class Game {
         // Insert win or lose message into h1 #game-over-message depending on gameWon
         // Replace #overlay "start" class with "win" or "lose" class depending on gameWon
         if (gameWon == true) {
-           $("#game-over-message").append("Congratulations! You win! Play again?");
+           $("#game-over-message").empty().append("Congratulations! You win! Play again?");
            $("#overlay").removeClass("start").addClass("win");
         }
         else {
-            $("#game-over-message").append("Better luck next time! Try again?");
+            $("#game-over-message").empty().append("Better luck next time! Try again?");
             $("#overlay").removeClass("start").addClass("lose");
         }
+        // Remove previous phrase
+        $("#phrase ul").empty();
+        // Re-enable on-screen keyboard buttons, update each to use "key" class, not "chosen" or "wrong"
+        $(".key").attr("disabled", false).removeClass("chosen").removeClass("wrong");
+        // Reset heart lives
+        $(".tries img").attr("src", "images/liveHeart.png");
     }
 
     // Increases value of missed property
@@ -70,7 +76,7 @@ class Game {
     removeLife() {
         this.missed++;
         // Select heart image based on how many times the player has missed a correct guess
-        let tries = $(`#scoreboard li:nth-child(${this.missed}) img`);
+        const tries = $(`#scoreboard li:nth-child(${this.missed}) img`);
 
         if (tries.attr("src") == "images/liveHeart.png") {
             tries.attr("src", "images/lostHeart.png");
