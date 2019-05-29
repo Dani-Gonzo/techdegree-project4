@@ -18,6 +18,10 @@ $(".keyrow").click((event) => {
 });
 
 document.addEventListener("keyup", (event) => {
+    // If activePhrase is null, do not accept keyboard input
+    if (game.activePhrase == null) {
+        return;
+    }
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         const button = $(`.keyrow button:contains(${event.key})`);
         if (button.prop("disabled") == false) {

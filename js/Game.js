@@ -62,6 +62,8 @@ class Game {
             $("#game-over-message").empty().append("Better luck next time! Try again?");
             $("#overlay").removeClass("start").addClass("lose");
         }
+        // Set active phrase to null so app will not accept keyboard input
+        this.activePhrase = null;
         // Remove previous phrase
         $("#phrase ul").empty();
         // Re-enable on-screen keyboard buttons, update each to use "key" class, not "chosen" or "wrong"
